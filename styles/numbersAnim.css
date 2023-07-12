@@ -1,0 +1,25 @@
+#numbersContainer{
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+}
+
+#numbersContainer h2{
+    font-size: 2rem;
+    font-family: monospace;
+}
+
+#numbersContainer span{
+    display: inline-block;
+    font-size: 1.8rem;
+    font-family: monospace;
+    color: #e54;
+    font-weight: bolder;
+}
+
+@media (max-width: 700px){
+    #numbersContainer{
+        grid-column: 1;
+        gap: 30px;
+    }
+}
+

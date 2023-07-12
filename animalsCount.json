@@ -1,0 +1,26 @@
+[
+    {
+        "species": "lobo",
+        "count": 2313
+    },
+    {
+        "species": "raposa",
+        "count": 5343
+    },
+    {
+        "species": "urso",
+        "count": 2421
+    },
+    {
+        "species": "esquilo",
+        "count": 1314
+    },
+    {
+        "species": "leao",
+        "count": 3144
+    },
+    {
+        "species": "macaco",
+        "count": 4134
+    }
+]

@@ -1,0 +1,13 @@
+.tooltip-box{
+    background-color: rgba(0,0,0, .6);
+    z-index: 10;
+    position: absolute;
+    padding: 30px;
+    box-shadow: 0 0 0 10px rgba(0,0,0, .6), 0 0 0 2px #fb5;
+    font-weight: 900;
+    font-size: 1.3rem;
+    font-family: monospace;
+    color: white;
+    width: 200px;
+    border-radius: 5px;
+}
