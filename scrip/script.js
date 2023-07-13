@@ -1,5 +1,5 @@
 /* eslint-disable import/no-extraneous-dependencies */
-import smoothScroll from './smooth.js';
+import SmoothScroll from './smooth.js';
 import imagesAnim from './imagesDescription.js';
 import faqAnim from './animFaq.js';
 import scrollAnim from './scrollAnim.js';
@@ -11,9 +11,11 @@ import openingHours from './funcionamento.js';
 import fetchAnimals from './fetchAnimal.js';
 import receiveBitCoinValue from './fetchBitcoinPrice.js';
 
+const RequestSmooth = new SmoothScroll('a[href^="#"]', { behavior: 'smooth', block: 'start' });
+RequestSmooth.init();
+
 imagesAnim();
 faqAnim();
-smoothScroll();
 scrollAnim();
 modalFunction();
 toolTipFunction();
