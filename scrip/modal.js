@@ -1,4 +1,3 @@
-/* eslint-disable no-unused-expressions */
 export default function modalFunction() {
   const receiveOpenButton = document.querySelector('[data-modal="openModal"]');
   const receiveModalContainer = document.querySelector('[data-modal="modalContainer"]');
