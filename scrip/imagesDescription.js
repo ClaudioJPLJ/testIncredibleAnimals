@@ -21,6 +21,10 @@ export default class ImagesAnim {
   }
 
   init() {
-    this.addEvents();
+    const { images } = this;
+    const { descriptions } = this;
+    const { classNames } = this;
+    images && descriptions && classNames ? this.addEvents() : null;
+    return this;
   }
 }
