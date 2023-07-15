@@ -1,18 +1,26 @@
-export default function imagesAnim() {
-  const images = document.querySelectorAll('#animals ul img');
-  const descriptions = document.querySelectorAll('#animals-description section');
-  descriptions[0].classList.add('ativo');
-  const clickImg = (ev) => {
-    descriptions.forEach(el => {
-      el.classList.remove('ativo');
+export default class ImagesAnim {
+  constructor(images, descriptions, classNames) {
+    this.images = images;
+    this.descriptions = descriptions;
+    this.classNames = classNames;
+  }
+
+  addEvents() {
+    const eventImages = document.querySelectorAll(this.images);
+    const descriptionForImages = document.querySelectorAll(this.descriptions);
+    const { classNames } = this;
+    eventImages.forEach((element, index) => {
+      element.addEventListener('click', () => {
+        descriptionForImages.forEach(el => {
+          el.classList.remove(...classNames);
+        }); // reset active itens
+
+        descriptionForImages[index].classList.add(...classNames);
+      });
     });
+  }
 
-    descriptions[ev.target.id].classList.add('ativo');
-  };
-
-  let countForId = 0;
-  images.forEach(el => {
-    el.setAttribute('id', countForId++);
-    el.addEventListener('click', clickImg);
-  });
+  init() {
+    this.addEvents();
+  }
 }

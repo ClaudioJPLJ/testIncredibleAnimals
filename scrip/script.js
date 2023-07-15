@@ -1,6 +1,6 @@
 /* eslint-disable import/no-extraneous-dependencies */
 import SmoothScroll from './smooth.js';
-import imagesAnim from './imagesDescription.js';
+import ImagesAnim from './imagesDescription.js';
 import AccordionAnimation from './animFaq.js';
 import scrollAnim from './scrollAnim.js';
 import modalFunction from './modal.js';
@@ -17,7 +17,9 @@ RequestSmooth.init();
 const RequestAccordion = new AccordionAnimation('#faq dt', 'opened');
 RequestAccordion.init();
 
-imagesAnim();
+const RequestNavImg = new ImagesAnim('[data-imagesAnim] img', '[data-descriptionAnim] section', ['ativo', 'aberto']);
+RequestNavImg.init();
+
 scrollAnim();
 modalFunction();
 toolTipFunction();
