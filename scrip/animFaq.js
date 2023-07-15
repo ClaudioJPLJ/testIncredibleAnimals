@@ -1,8 +1,7 @@
 export default class AccordionAnimation {
-  constructor(eventElements, targetElements, CSSclasses) {
+  constructor(eventElements, CSSclasses) {
     this.eventElements = eventElements;
     this.CSSclasses = CSSclasses;
-    this.targetElements = targetElements;
     this.addClassName = {
       handleEvent(event) {
         const convertArray = this.already.join('').split(' '); // convert string of args into an array
@@ -25,5 +24,6 @@ export default class AccordionAnimation {
   init() {
     const { eventElements } = this;
     eventElements && this.CSSclasses ? this.addEvent(eventElements) : null;
+    return this;
   }
 }

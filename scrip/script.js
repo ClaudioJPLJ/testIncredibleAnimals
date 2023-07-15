@@ -14,7 +14,7 @@ import receiveBitCoinValue from './fetchBitcoinPrice.js';
 const RequestSmooth = new SmoothScroll('a[href^="#"]', { behavior: 'smooth', block: 'start' });
 RequestSmooth.init();
 
-const RequestAccordion = new AccordionAnimation('#faq dt', '#faq dd', 'opened');
+const RequestAccordion = new AccordionAnimation('#faq dt', 'opened');
 RequestAccordion.init();
 
 imagesAnim();
