@@ -1,17 +1,25 @@
-export default function modalFunction() {
-  const receiveOpenButton = document.querySelector('[data-modal="openModal"]');
-  const receiveModalContainer = document.querySelector('[data-modal="modalContainer"]');
-  const receiveCloseModalButton = document.querySelector('button[data-modal="fechar"]');
-  const isActiveModal = (event) => {
-    event.preventDefault();
-    receiveModalContainer.classList.toggle('active');
-  };
+export default class ModalFunction {
+  constructor(openButton, modalContainer, closeModalButton) {
+    this.openButton = document.querySelector(openButton);
+    this.modalContainer = document.querySelector(modalContainer);
+    this.closeModalButton = document.querySelector(closeModalButton);
+  }
 
-  if (receiveOpenButton && receiveModalContainer && receiveCloseModalButton) {
-    receiveOpenButton.addEventListener('click', isActiveModal);
-    receiveCloseModalButton.addEventListener('click', isActiveModal);
-    receiveModalContainer.addEventListener('click', (event) => {
-      event.target === receiveModalContainer ? receiveModalContainer.classList.remove('active') : null;
+  addEvents() {
+    const { openButton } = this;
+    const { closeModalButton } = this;
+    const { modalContainer } = this;
+    [openButton, closeModalButton].forEach(el => el.addEventListener('click', (ev) => {
+      ev.preventDefault();
+      modalContainer.classList.toggle('active');
+    }));
+    modalContainer.addEventListener('click', (ev) => {
+      ev.target === modalContainer ? modalContainer.classList.remove('active') : null;
     });
+  }
+
+  init() {
+    this.openButton && this.modalContainer && this.closeModalButton ? this.addEvents() : null;
+    return this;
   }
 }
