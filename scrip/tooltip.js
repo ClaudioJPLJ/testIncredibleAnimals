@@ -1,39 +1,52 @@
-/* eslint-disable no-use-before-define */
-export default function toolTipFunction() {
-  const receiveToolTips = document.querySelectorAll('[data-toolTip]');
-  const mouseMove = {
-    handleEvent(event) {
-      this.elementCreated.style.top = `${event.offsetY + 20}px`;
-      this.elementCreated.style.left = `${event.offsetX + 20}px`;
-    }
-  };
-  const removeTooltipBox = {
-    handleEvent() {
-      this.createdElement.remove();
-      this.parentElement.addEventListener('mouseover', isMouseOver);
-      this.parentElement.removeEventListener('mousemove', mouseMove);
-      this.parentElement.removeEventListener('mouseleave', removeTooltipBox);
-    }
-  };
-
-  function isMouseOver() {
-    this.addEventListener('mouseleave', removeTooltipBox);
-    this.addEventListener('mousemove', mouseMove);
-    const createElement = createToolTipBox(this);
-    removeTooltipBox.createdElement = createElement;
-    removeTooltipBox.parentElement = this;
+export default class ToolTipFunction {
+  constructor(targetElement) {
+    this.targetElement = document.querySelectorAll(targetElement);
   }
 
-  receiveToolTips.forEach(element => {
-    element.addEventListener('mouseover', isMouseOver);
-  });
-
-  const createToolTipBox = parentElement => {
+  createToolTipBox(currentLabel) {
     const elementCreate = document.createElement('div');
-    parentElement.appendChild(elementCreate).classList.add('tooltip-box');
-    elementCreate.innerHTML = parentElement.getAttribute('aria-label');
-    mouseMove.elementCreated = elementCreate;
-    parentElement.removeEventListener('mouseover', isMouseOver);
-    return elementCreate;
-  };
+    this.targetElement.forEach(el => {
+      el.appendChild(elementCreate).classList.add('tooltip-box');
+      elementCreate.innerHTML = currentLabel.getAttribute('aria-label');
+      el.removeEventListener('mouseover', this.isMouseOver); // removal of the event to not run in the background
+    });
+
+    this.elementCreated = elementCreate; // put created element in class
+  }
+
+  mouseMove({ offsetX, offsetY }) {
+    if (offsetX >= (window.innerWidth / 2)) {
+      this.elementCreated.style.top = `${offsetY + 40}px`;
+      this.elementCreated.style.left = `${offsetX / 2}px`;
+    } else {
+      this.elementCreated.style.top = `${offsetY + 40}px`;
+      this.elementCreated.style.left = `${offsetX + 40}px`;
+    }
+  }
+
+  removeTooltipBox({ currentTarget }) {
+    this.elementCreated.remove();
+    currentTarget.addEventListener('mouseover', this.isMouseOver);
+    currentTarget.removeEventListener('mousemove', this.mouseMove);
+    currentTarget.removeEventListener('mouseleave', this.removeTooltipBox);
+  }
+
+  isMouseOver({ currentTarget, target }) {
+    if (!Array.from(target.classList).includes('tooltip-box')) { // evit a little bug at tooltip-box
+      this.createToolTipBox(currentTarget);
+      currentTarget.addEventListener('mouseleave', this.removeTooltipBox.bind(this));
+      currentTarget.addEventListener('mousemove', this.mouseMove.bind(this));
+    }
+  }
+
+  addEvent() {
+    this.targetElement.forEach(element => {
+      element.addEventListener('mouseover', this.isMouseOver.bind(this));
+    });
+  }
+
+  init() {
+    this.targetElement.length ? this.addEvent() : null;
+    return this;
+  }
 }
