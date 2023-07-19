@@ -3,8 +3,8 @@ import SmoothScroll from './smooth.js';
 import ImagesAnim from './imagesDescription.js';
 import AccordionAnimation from './animFaq.js';
 import ModalFunction from './modal.js';
+import ToolTipFunction from './tooltip.js';
 import scrollAnim from './scrollAnim.js';
-import toolTipFunction from './tooltip.js';
 import dropDownMenu from './dropDown.js';
 import menuMobile from './menu-mobile.js';
 import openingHours from './funcionamento.js';
@@ -23,8 +23,10 @@ RequestNavImg.init();
 const RequestModal = new ModalFunction('[data-openModal]', '[data-modalContainer]', '[data-closeModal');
 RequestModal.init();
 
+const RequestTooltip = new ToolTipFunction('[data-toolTip]');
+RequestTooltip.init();
+
 scrollAnim();
-toolTipFunction();
 dropDownMenu();
 menuMobile();
 openingHours();
