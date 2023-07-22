@@ -1,20 +1,30 @@
-export default function numbersAnimation() {
-  const receiveNumbers = document.querySelectorAll('span[data-numbers]');
-  let count = 1;
-  const observer = new MutationObserver(() => {
-    receiveNumbers.forEach(el => {
-      const finalNumber = el.innerText;
-      const timerForNumbers = setInterval(() => {
-        el.innerText = count;
-        count += Math.floor((finalNumber / 400));
-        if (count >= finalNumber) {
-          el.innerText = finalNumber;
-          clearInterval(timerForNumbers);
-        }
-      }, 25);
+export default class NumbersAnimation {
+  constructor(receiveNumbers, observedElement) {
+    this.receiveNumbers = receiveNumbers;
+    this.observedElement = document.querySelector(observedElement);
+  }
+
+  Observe() {
+    const instanceObserver = new MutationObserver(() => {
+      instanceObserver.disconnect();
+      let count = 1;
+      this.receiveNumbers.forEach(el => {
+        const finalNumber = +(el.innerText);
+        const timerForNumbers = setInterval(() => {
+          el.innerText = count;
+          count += Math.floor((finalNumber / 350));
+          if (count >= finalNumber) {
+            el.innerText = finalNumber;
+            clearInterval(timerForNumbers);
+          }
+        }, 25);
+      });
     });
-    observer.disconnect();
-  });
-  const receiveNumbersParent = document.querySelector('#numbersContainer');
-  observer.observe(receiveNumbersParent, { attributes: true });
+    instanceObserver.observe(this.observedElement, { attributes: true });
+  }
+
+  init() {
+    this.observedElement && this.receiveNumbers.length ? this.Observe() : null;
+    return this;
+  }
 }
