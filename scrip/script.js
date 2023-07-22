@@ -8,7 +8,7 @@ import scrollAnim from './scrollAnim.js';
 import dropDownMenu from './dropDown.js';
 import menuMobile from './menu-mobile.js';
 import openingHours from './funcionamento.js';
-import fetchAnimals from './fetchAnimal.js';
+import FetchAnimals from './fetchAnimal.js';
 import receiveBitCoinValue from './fetchBitcoinPrice.js';
 
 const RequestSmooth = new SmoothScroll('a[href^="#"]', { behavior: 'smooth', block: 'start' });
@@ -26,9 +26,11 @@ RequestModal.init();
 const RequestTooltip = new ToolTipFunction('[data-toolTip]');
 RequestTooltip.init();
 
+const RequestFetchAnimals = new FetchAnimals('span[data-numbers]');
+RequestFetchAnimals.init();
+
 scrollAnim();
 dropDownMenu();
 menuMobile();
 openingHours();
-fetchAnimals();
 receiveBitCoinValue();
