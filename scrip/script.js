@@ -29,8 +29,9 @@ RequestTooltip.init();
 const RequestFetchAnimals = new FetchAnimals('span[data-numbers]');
 RequestFetchAnimals.init();
 
+receiveBitCoinValue('[data-bitCoinDonation]', 'https://blockchain.info/ticker');
+
 scrollAnim();
 dropDownMenu();
 menuMobile();
 openingHours();
-receiveBitCoinValue();
