@@ -4,34 +4,36 @@ import ImagesAnim from './imagesDescription.js';
 import AccordionAnimation from './animFaq.js';
 import ModalFunction from './modal.js';
 import ToolTipFunction from './tooltip.js';
-import scrollAnim from './scrollAnim.js';
+import ScrollAnim from './scrollAnim.js';
 import dropDownMenu from './dropDown.js';
 import menuMobile from './menu-mobile.js';
 import openingHours from './funcionamento.js';
 import FetchAnimals from './fetchAnimal.js';
 import receiveBitCoinValue from './fetchBitcoinPrice.js';
 
-const RequestSmooth = new SmoothScroll('a[href^="#"]', { behavior: 'smooth', block: 'start' });
-RequestSmooth.init();
+const requestSmooth = new SmoothScroll('a[href^="#"]', { behavior: 'smooth', block: 'start' });
+requestSmooth.init();
 
-const RequestAccordion = new AccordionAnimation('#faq dt', 'opened');
-RequestAccordion.init();
+const requestAccordion = new AccordionAnimation('#faq dt', 'opened');
+requestAccordion.init();
 
-const RequestNavImg = new ImagesAnim('[data-imagesAnim] img', '[data-descriptionAnim] section', ['ativo', 'aberto']);
-RequestNavImg.init();
+const requestNavImg = new ImagesAnim('[data-imagesAnim] img', '[data-descriptionAnim] section', ['ativo', 'aberto']);
+requestNavImg.init();
 
-const RequestModal = new ModalFunction('[data-openModal]', '[data-modalContainer]', '[data-closeModal');
-RequestModal.init();
+const requestModal = new ModalFunction('[data-openModal]', '[data-modalContainer]', '[data-closeModal');
+requestModal.init();
 
-const RequestTooltip = new ToolTipFunction('[data-toolTip]');
-RequestTooltip.init();
+const requestTooltip = new ToolTipFunction('[data-toolTip]');
+requestTooltip.init();
 
-const RequestFetchAnimals = new FetchAnimals('span[data-numbers]');
-RequestFetchAnimals.init();
+const requestFetchAnimals = new FetchAnimals('span[data-numbers]');
+requestFetchAnimals.init();
 
 receiveBitCoinValue('[data-bitCoinDonation]', 'https://blockchain.info/ticker');
 
-scrollAnim();
+const requestScrollAnim = new ScrollAnim('[data-scroll="scrollAnim"]');
+requestScrollAnim.init();
+
 dropDownMenu();
 menuMobile();
 openingHours();
