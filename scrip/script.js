@@ -5,7 +5,7 @@ import AccordionAnimation from './animFaq.js';
 import ModalFunction from './modal.js';
 import ToolTipFunction from './tooltip.js';
 import ScrollAnim from './scrollAnim.js';
-import dropDownMenu from './dropDown.js';
+import DropdownMenu from './dropdown.js';
 import menuMobile from './menu-mobile.js';
 import openingHours from './funcionamento.js';
 import FetchAnimals from './fetchAnimal.js';
@@ -34,6 +34,8 @@ receiveBitCoinValue('[data-bitCoinDonation]', 'https://blockchain.info/ticker');
 const requestScrollAnim = new ScrollAnim('[data-scroll="scrollAnim"]');
 requestScrollAnim.init();
 
-dropDownMenu();
+const requestdropDown = new DropdownMenu('[data-dropMenu]');
+requestdropDown.init();
+
 menuMobile();
 openingHours();

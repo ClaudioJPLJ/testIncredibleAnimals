@@ -14,7 +14,6 @@ export default class ScrollAnim {
   }
 
   distanceComparation() {
-    console.log('exec');
     const activationHeight = this.activationHeight + window.scrollY;
     this.elementsDistance.forEach(item => {
       if (item.offset <= activationHeight) {
