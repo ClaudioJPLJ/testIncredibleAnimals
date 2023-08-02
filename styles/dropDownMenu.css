@@ -10,7 +10,8 @@
     }
 }   
 
-[data-dropMenu]:hover .dropdown-menu{
+[data-dropMenu]:hover .dropdown-menu, 
+[data-dropMenu].ativo .dropdown-menu {
     display: block !important; 
 }
 

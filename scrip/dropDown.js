@@ -1,16 +1,45 @@
-export default function dropDownMenu() { // this is a function for mobile user
-  const receiveDropMenus = document.querySelectorAll('[data-dropMenu]');
-  const activeMenu = {
-    handleEvent(event) {
-      event.preventDefault();
-      event.target.hasAttribute('data-dropDownMenu') ? this.element.children[1].style.display = 'block' : this.element.children[1].style.display = 'none';
+export default class DropdownMenu {
+  constructor(menuParent) {
+    this.menuParent = document.querySelectorAll(menuParent);
+    this.handleClick = this.handleClick.bind(this);
+    this.defaultEvents = ['touchstart', 'click'];
+  }
+
+  handleClick(ev) {
+    ev.preventDefault();
+    this.compareElement = ev.currentTarget;
+    if (!this.compareElement.classList.contains('ativo')) {
+      this.outsideClick(this.defaultEvents);
     }
-  };
-  receiveDropMenus.forEach((element) => {
-    ['touchstart', 'click'].forEach(userEvent => {
-      element.addEventListener(userEvent, activeMenu);
-      document.querySelector('#grid-container').addEventListener(userEvent, activeMenu);
+    ev.currentTarget.classList.add('ativo');
+  }
+
+  outsideClick(events) {
+    const bodyElement = document.body;
+    const handleOutsideClick = (ev) => {
+      if (!this.compareElement.contains(ev.target)) {
+        this.compareElement.classList.remove('ativo');
+        events.forEach(event => {
+          bodyElement.removeEventListener(event, handleOutsideClick);
+        });
+      }
+    };
+
+    events.forEach(event => {
+      bodyElement.addEventListener(event, handleOutsideClick);
     });
-    activeMenu.element = element;
-  });
+  }
+
+  addEvents() {
+    this.menuParent.forEach(el => {
+      this.defaultEvents.forEach(event => {
+        el.addEventListener(event, this.handleClick);
+      });
+    });
+  }
+
+  init() {
+    this.menuParent ? this.addEvents() : null;
+    return this;
+  }
 }
