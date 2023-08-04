@@ -7,7 +7,7 @@ import ToolTipFunction from './tooltip.js';
 import ScrollAnim from './scrollAnim.js';
 import DropdownMenu from './dropdown.js';
 import MenuMobile from './menu-mobile.js';
-import openingHours from './funcionamento.js';
+import OpeningHours from './funcionamento.js';
 import FetchAnimals from './fetchAnimal.js';
 import receiveBitCoinValue from './fetchBitcoinPrice.js';
 
@@ -40,4 +40,5 @@ requestdropDown.init();
 const requestMenuMobile = new MenuMobile('[data-menuMobile]', '[data-menumobile] + ul');
 requestMenuMobile.init();
 
-openingHours();
+const requestOpeningHours = new OpeningHours('[data-opTime]');
+requestOpeningHours.init();
