@@ -1,10 +1,25 @@
-export default function openingHours() {
-  const receiveElementHours = document.querySelector('[data-opTime]');
-  const hours = new Date();
-  const itsTime = hours.getHours >= 8 && hours.getHours < 18;
-  const itsWorkDay = hours.getDay !== 0 && hours.getDay !== 6;
+/* eslint-disable max-len */
+export default class OpeningHours {
+  constructor(elementTarget, openingRules = { begin: 8, closure: 18, workDay: [1, 5] }) {
+    this.receiveElementHours = document.querySelector(elementTarget);
+    this.hours = new Date();
+    this.openingRules = openingRules;
+    // openingRules property takes a start and end time of work,
+    // and work days between 0 and 6
+  }
 
-  if (itsTime && itsWorkDay) {
-    receiveElementHours.classList.add('aberto');
+  itsWorking() {
+    const working = this.openingRules;
+    const itsTime = (this.hours.getUTCHours() - 3) >= working.begin && (this.hours.getUTCHours() - 3) < working.closure;
+    // Brasilia time UTC
+    const itsWorkDay = this.hours.getDay() >= working.workDay[0] && this.hours.getDay() <= working.workDay[1];
+    if (itsTime && itsWorkDay) {
+      this.receiveElementHours.classList.add('aberto');
+    }
+  }
+
+  init() {
+    this.receiveElementHours ? this.itsWorking() : null;
+    return this;
   }
 }
