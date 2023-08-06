@@ -5,6 +5,7 @@ import AccordionAnimation from './animFaq.js';
 import ModalFunction from './modal.js';
 import ToolTipFunction from './tooltip.js';
 import ScrollAnim from './scrollAnim.js';
+// eslint-disable-next-line import/no-unresolved
 import DropdownMenu from './dropdown.js';
 import MenuMobile from './menu-mobile.js';
 import OpeningHours from './funcionamento.js';

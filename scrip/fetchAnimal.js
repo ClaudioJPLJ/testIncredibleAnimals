@@ -6,7 +6,7 @@ export default class FetchAnimals {
   }
 
   async pushJsonAnimals() {
-    const animalsJson = await (await fetch('../animalsCount.json')).json();
+    const animalsJson = await (await fetch('./animalsCount.json')).json();
     this.assignNumber(animalsJson);
   }
 

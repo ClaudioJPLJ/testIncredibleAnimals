@@ -17,5 +17,6 @@ export default class MenuMobile {
         this.receiveMenuClick.addEventListener(eventListener, this.menuClicked);
       });
     }
+    return this;
   }
 }
