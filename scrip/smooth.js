@@ -20,5 +20,6 @@ export default class SmoothScrol {
     if (this.links) {
       this.addEvent(this.options);
     }
+    return this;
   }
 }

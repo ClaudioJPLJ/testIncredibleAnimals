@@ -3,14 +3,15 @@ export default class AccordionAnimation {
     this.eventElements = eventElements;
     this.CSSclasses = CSSclasses;
     this.addClassName = {
+      already: [this.CSSclasses],
+
       handleEvent(event) {
         const convertArray = this.already.join('').split(' '); // convert string of args into an array
         convertArray.forEach(CSSclass => {
           event.target.classList.toggle(CSSclass);
           event.target.nextElementSibling.classList.toggle(CSSclass);
         });
-      },
-      already: [this.CSSclasses]
+      }
     };
   }
 

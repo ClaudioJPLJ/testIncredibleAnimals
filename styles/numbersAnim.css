@@ -1,3 +1,12 @@
+#numbersGrid{
+    display: none;
+}
+
+html.hasJS #numbersGrid{
+    display: grid;
+}
+/* verify if has Js on html element, because datas use JS*/
+
 #numbersContainer{
     display: grid;
     grid-template-columns: 1fr 1fr;

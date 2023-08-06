@@ -124,7 +124,7 @@ nav li a{
     margin-bottom: 4rem;
 }
 
-h1, #faq h2, #contact h2, .numbersGrid > h2{
+h1, #faq h2, #contact h2, #numbersGrid > h2{
     font-family: 'Playfair Display SC', Georgia, 'Times New Roman', Times, serif;
     line-height: 1;
     font-weight: 400;
