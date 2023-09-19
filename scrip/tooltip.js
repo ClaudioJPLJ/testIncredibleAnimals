@@ -15,9 +15,9 @@ export default class ToolTipFunction {
   }
 
   mouseMove({ offsetX, offsetY }) {
-    if (offsetX >= (window.innerWidth / 2)) {
+    if (offsetX >= (window.innerWidth / 4.5)) {
       this.elementCreated.style.top = `${offsetY + 40}px`;
-      this.elementCreated.style.left = `${offsetX / 2}px`;
+      this.elementCreated.style.left = `${offsetX / 3.2}px`;
     } else {
       this.elementCreated.style.top = `${offsetY + 40}px`;
       this.elementCreated.style.left = `${offsetX + 40}px`;
