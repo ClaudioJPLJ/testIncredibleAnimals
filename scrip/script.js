@@ -11,6 +11,7 @@ import MenuMobile from './menu-mobile.js';
 import OpeningHours from './funcionamento.js';
 import FetchAnimals from './fetchAnimal.js';
 import receiveBitCoinValue from './fetchBitcoinPrice.js';
+import Slide from './slide-configs.js';
 
 const requestSmooth = new SmoothScroll('a[href^="#"]', { behavior: 'smooth', block: 'start' });
 requestSmooth.init();
@@ -43,3 +44,6 @@ requestMenuMobile.init();
 
 const requestOpeningHours = new OpeningHours('[data-opTime]');
 requestOpeningHours.init();
+
+const slide = new Slide('#photosContainer', '#photoPicker');
+slide.init();

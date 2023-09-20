@@ -249,7 +249,11 @@ ul:nth-child(2)::-webkit-scrollbar-thumb{
         font-size: 3.2rem;
     }
     
-    #map, #dados, #faq dl, #contact{
+    #map, #dados, #faq dl, #contact, #grid-container #slide-container{
         grid-column: 1/4;
+    }
+
+    #slide-container #photosContainer img{
+      width: 80vw;
     }
 }

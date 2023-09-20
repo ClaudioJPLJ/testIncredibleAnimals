@@ -1,7 +1,7 @@
-import debounce from "./debounce.js";
+import debounce from './debounce.js';
 
 export default class Slide {
-  constructor (slide, thumbImages, prevNextbuttons) {
+  constructor(slide, thumbImages, prevNextbuttons) {
     this.slide = document.querySelector(slide);
     this.slideImages = [...this.slide.children];
     this.photoPicker = document.querySelector(thumbImages);
@@ -11,11 +11,12 @@ export default class Slide {
 
   // config and scroll functions
   catchDistances() {
-    const slideMargin = this.slide.offsetLeft; // pega a margem do slide para não dar diferença de posicionamento
+    const slideMargin = this.slide.offsetLeft;
+    // pega a margem do slide para não dar diferença de posicionamento
     this.imagesDistances = this.slideImages.map(el => {
       return {
         el, position: el.offsetLeft - slideMargin
-      }
+      };
     });
   }
 
@@ -29,18 +30,22 @@ export default class Slide {
   }
 
   moveImage(index) {
+    // eslint-disable-next-line max-len
     const alignCenterImages = (this.slide.clientWidth - this.imagesDistances[index].el.clientWidth) / 2;
     // expressão para posicionar imagens ao centro
     this.slide.style.scrollBehavior = 'smooth';
-    this.slide.scrollLeft = this.imagesDistances[index].position - alignCenterImages; // pega a posição de determinado elemento com base no index
+    this.slide.scrollLeft = this.imagesDistances[index].position - alignCenterImages;
+    // pega a posição de determinado elemento com base no index
     this.indexNav(index); // atualiza o index de acordo com arg passado para este método
-    this.resizeElement(this.imagesIndex.current); // passa como argumento o index atual após atualizar o imagesIndex
-    this.slide.style.scrollBehavior = 'auto'; // remove o smooth scroll p/ o usuário poder mover a imagem
+    this.resizeElement(this.imagesIndex.current);
+    // passa como argumento o index atual após atualizar o imagesIndex
+    this.slide.style.scrollBehavior = 'auto';
+    // remove o smooth scroll p/ o usuário poder mover a imagem
   }
 
   resizeElement(index) {
     const activeClass = 'visible';
-    this.imagesDistances.forEach(object => object.el.classList.remove(activeClass)); 
+    this.imagesDistances.forEach(object => object.el.classList.remove(activeClass));
     this.thumbImages.forEach(el => el.classList.remove(activeClass));
     // remove as classes de todos os elementos antes de adicionar em um novo
     this.imagesDistances[index].el.classList.add(activeClass);
@@ -51,18 +56,19 @@ export default class Slide {
     ev.preventDefault();
     ev.currentTarget.classList.add('grab');
     this.isMobile = ev.type.startsWith('touch');
-    this.isMobile 
-    ? this.initalClick = ev.changedTouches[0].screenX
-    : this.initalClick = ev.pageX; // para calcular a diferença do pageX no mousemove
+    this.isMobile
+      ? this.initalClick = ev.changedTouches[0].screenX
+      : this.initalClick = ev.pageX; // para calcular a diferença do pageX no mousemove
     this.lastPosition = this.slide.scrollLeft;
     ['mousemove', 'touchmove'].forEach(event => this.slide.addEventListener(event, this.isMoving));
   }
 
   isMoving(event) {
     const movement = this.isMobile ? event.changedTouches[0].screenX : event.pageX;
-    this.clickDifference = (movement - this.initalClick) * .9; // this utilizado para o isDroped poder ter acesso 
+    this.clickDifference = (movement - this.initalClick) * 0.9;
+    // this utilizado para o isDroped poder ter acesso
     this.slide.scrollLeft = this.lastPosition - this.clickDifference;
-    // cálculo -> última posição do scroll - pageX atualizado a cada movimento - 
+    // cálculo -> última posição do scroll - pageX atualizado a cada movimento -
     // pageX do click inicial * 0.9
   }
 
@@ -70,9 +76,9 @@ export default class Slide {
     const dragLimit = this.isMobile ? 70 : 130;
     ['mousemove', 'touchmove'].forEach(event => this.slide.removeEventListener(event, this.isMoving));
     if (this.slide.classList.contains('grab')) {
-      if (this.clickDifference <= -dragLimit ) {
+      if (this.clickDifference <= -dragLimit) {
         this.moveImage(this.imagesIndex.next);
-      } else if(this.clickDifference >= dragLimit) {
+      } else if (this.clickDifference >= dragLimit) {
         this.moveImage(this.imagesIndex.prev);
       } else {
         this.moveImage(this.imagesIndex.current);
@@ -82,7 +88,7 @@ export default class Slide {
   }
 
   // image picker
-  selectThumbnail({ currentTarget }) { 
+  selectThumbnail({ currentTarget }) {
     const clickedIndex = this.thumbImages.indexOf(currentTarget);
     this.moveImage(clickedIndex);
   }
@@ -91,8 +97,8 @@ export default class Slide {
   previousAndNext({ currentTarget }) {
     const currentCommand = currentTarget.dataset.move;
     currentCommand === 'previous'
-    ? this.moveImage(this.imagesIndex.prev)
-    : this.moveImage(this.imagesIndex.next);
+      ? this.moveImage(this.imagesIndex.prev)
+      : this.moveImage(this.imagesIndex.next);
   }
 
   addEvents() {
@@ -102,7 +108,9 @@ export default class Slide {
       this.debounceResize();
     });
     this.thumbImages.forEach(el => el.addEventListener('click', this.selectThumbnail));
-    this.prevNextButtons.forEach(el => el.addEventListener('click', this.previousAndNext));
+    if (this.prevNextButtons) {
+      this.prevNextButtons.forEach(el => el.addEventListener('click', this.previousAndNext));
+    }
   }
 
   bindEvents() {
@@ -115,16 +123,18 @@ export default class Slide {
   }
 
   init() {
-    this.catchDistances();
-    this.indexNav(0);
-    this.bindEvents();
-    this.addEvents();
-    this.resizeElement(0);
-    this.debounceResize = debounce(() => {
-      this.catchDistances()
-      setTimeout(() => {
-        this.moveImage(this.imagesIndex.current);
-      }, 300);
-    }, 500);
+    if (this.thumbImages && this.slide) {
+      this.catchDistances();
+      this.indexNav(0);
+      this.bindEvents();
+      this.addEvents();
+      this.resizeElement(0);
+      this.debounceResize = debounce(() => {
+        this.catchDistances();
+        setTimeout(() => {
+          this.moveImage(this.imagesIndex.current);
+        }, 300);
+      }, 500);
+    }
   }
 }
