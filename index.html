@@ -12,7 +12,7 @@
   <div id="grid-container">
     <nav>
       <button data-menuMobile aria-expanded="false">Menu</button>
-      <ul>
+      <ul data-menu-mobile-container>
         <li><a href="#animals">Animais</a></li>
         <li data-dropMenu>
           <span><a href="sobre.html">Sobre</a></span>
@@ -26,7 +26,7 @@
         <li><a href="#faq">Faq</a></li>
         <li>
           <a href="#contact">Contato</a>
-        <li><a data-openModal href="login.html" target="_blank">Login →</a></li>
+        <li><a data-openModal href="login.html" target="_blank">Login <span id="arrow-black"></span></a></li>
       </ul>
     </nav>
     <section class="grid-section" id="animals">
@@ -113,13 +113,13 @@
     <section class="grid-section" id="faq">
       <h2>FAQ</h2>
       <dl data-scroll="scrollAnim" class="js-scroll">
-        <dt>Qual a idade dos animais?</dt>
-        <dd>As raposas são animais mamíferos e onívoros pertencentes à família Canidae. São vulpídeos de porte médio, caracterizados por um focinho comprido e uma cauda longa e peluda.</dd>
-        <dt>Eles são fantásticos?</dt>
+        <dt class="opened">Qual a idade dos animais? <span id="red-arrow"></span></dt>
+        <dd class="opened">As raposas são animais mamíferos e onívoros pertencentes à família Canidae. São vulpídeos de porte médio, caracterizados por um focinho comprido e uma cauda longa e peluda.</dd>
+        <dt>Eles são fantásticos? <span id="red-arrow"></span></dt>
         <dd>Também apresentam como particularidade suas pupilas ovais, semelhantes às pupilas verticais dos felídeos.</dd>
-        <dt>Qual a diferença?</dt>
+        <dt>Qual a diferença? <span id="red-arrow"></span></dt>
         <dd>As raposas são animais mamíferos e onívoros pertencentes à família Canidae. São vulpídeos de porte médio, caracterizados por um focinho comprido e uma cauda longa e peluda.</dd>
-        <dt>Como proteger?</dt>
+        <dt>Como proteger? <span id="red-arrow"></span></dt>
         <dd>Também apresentam como particularidade suas pupilas ovais, semelhantes às pupilas verticais dos felídeos.</dd>
       </dl>
     </section>
@@ -196,7 +196,7 @@
   <section data-modalContainer class="modal-container">
     <div id="modal">
       <form action="">
-        <button data-closeModal id="close-modal">X</button>
+        <button data-closeModal id="close-modal"></button>
         <label for="email">E-mail</label>
         <input type="email" id="email">
         <label for="password">Senha</label>

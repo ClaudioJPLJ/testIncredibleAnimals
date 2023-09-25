@@ -31,12 +31,12 @@ export default class ToolTipFunction {
     currentTarget.removeEventListener('mouseleave', this.removeTooltipBox);
   }
 
-  isMouseOver({ currentTarget, target }) {
-    if (!Array.from(target.classList).includes('tooltip-box')) { // evit a little bug at tooltip-box
-      this.createToolTipBox(currentTarget);
-      currentTarget.addEventListener('mouseleave', this.removeTooltipBox.bind(this));
-      currentTarget.addEventListener('mousemove', this.mouseMove.bind(this));
-    }
+  isMouseOver({ currentTarget }) {
+    const hasTooltip = document.querySelector('.tooltip-box');
+    hasTooltip != null ? null : this.createToolTipBox(currentTarget);
+    // prevent a little bug in the tooltip-box
+    currentTarget.addEventListener('mouseleave', this.removeTooltipBox.bind(this));
+    currentTarget.addEventListener('mousemove', this.mouseMove.bind(this));
   }
 
   addEvent() {

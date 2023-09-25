@@ -36,10 +36,10 @@ receiveBitCoinValue('[data-bitCoinDonation]', 'https://blockchain.info/ticker');
 const requestScrollAnim = new ScrollAnim('[data-scroll="scrollAnim"]');
 requestScrollAnim.init();
 
-const requestdropDown = new DropdownMenu('[data-dropMenu]');
+const requestdropDown = new DropdownMenu('[data-dropMenu]', '[data-hiddenMenu]');
 requestdropDown.init();
 
-const requestMenuMobile = new MenuMobile('[data-menuMobile]', '[data-menumobile] + ul');
+const requestMenuMobile = new MenuMobile('[data-menuMobile]', '[data-menumobile] + ul', '[data-menu-mobile-container]');
 requestMenuMobile.init();
 
 const requestOpeningHours = new OpeningHours('[data-opTime]');
