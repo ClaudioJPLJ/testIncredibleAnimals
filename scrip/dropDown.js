@@ -1,40 +1,39 @@
+import handleOutsideClick from './handleOutsideClick.js';
+
 export default class DropdownMenu {
-  constructor(menuParent) {
-    this.menuParent = document.querySelectorAll(menuParent);
+  constructor(menuParent, compareElement) {
+    this.menuParent = document.querySelector(menuParent);
+    this.compareElement = document.querySelector(compareElement);
     this.handleClick = this.handleClick.bind(this);
-    this.defaultEvents = ['touchstart', 'click'];
+    this.usesHandleOutside = this.usesHandleOutside.bind(this);
+    this.defaultEvents = ['click', 'touchstart'];
+    this.bodyElement = document.body;
+  }
+
+  usesHandleOutside(ev) {
+    !handleOutsideClick(ev.target, this.compareElement) ? this.removeActive() : null;
+  }
+
+  removeActive() {
+    // eslint-disable-next-line max-len
+    this.defaultEvents.forEach(events => this.bodyElement.removeEventListener(events, this.usesHandleOutside));
+    this.menuParent.classList.remove('ativo');
   }
 
   handleClick(ev) {
     ev.preventDefault();
-    this.compareElement = ev.currentTarget;
-    if (!this.compareElement.classList.contains('ativo')) {
-      this.outsideClick(this.defaultEvents);
+    if (!this.menuParent.classList.contains('ativo')) {
+      setTimeout(() => {
+        // eslint-disable-next-line max-len
+        this.defaultEvents.forEach(events => this.bodyElement.addEventListener(events, this.usesHandleOutside));
+        this.menuParent.classList.add('ativo');
+      }, 100);
     }
-    ev.currentTarget.classList.add('ativo');
-  }
-
-  outsideClick(events) {
-    const bodyElement = document.body;
-    const handleOutsideClick = (ev) => {
-      if (!this.compareElement.contains(ev.target)) {
-        this.compareElement.classList.remove('ativo');
-        events.forEach(event => {
-          bodyElement.removeEventListener(event, handleOutsideClick);
-        });
-      }
-    };
-
-    events.forEach(event => {
-      bodyElement.addEventListener(event, handleOutsideClick);
-    });
   }
 
   addEvents() {
-    this.menuParent.forEach(el => {
-      this.defaultEvents.forEach(event => {
-        el.addEventListener(event, this.handleClick);
-      });
+    this.defaultEvents.forEach(event => {
+      this.menuParent.addEventListener(event, this.handleClick);
     });
   }
 

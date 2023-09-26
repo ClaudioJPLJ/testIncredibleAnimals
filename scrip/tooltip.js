@@ -15,9 +15,9 @@ export default class ToolTipFunction {
   }
 
   mouseMove({ offsetX, offsetY }) {
-    if (offsetX >= (window.innerWidth / 2)) {
+    if (offsetX >= (window.innerWidth / 4.5)) {
       this.elementCreated.style.top = `${offsetY + 40}px`;
-      this.elementCreated.style.left = `${offsetX / 2}px`;
+      this.elementCreated.style.left = `${offsetX / 3.2}px`;
     } else {
       this.elementCreated.style.top = `${offsetY + 40}px`;
       this.elementCreated.style.left = `${offsetX + 40}px`;
@@ -31,12 +31,12 @@ export default class ToolTipFunction {
     currentTarget.removeEventListener('mouseleave', this.removeTooltipBox);
   }
 
-  isMouseOver({ currentTarget, target }) {
-    if (!Array.from(target.classList).includes('tooltip-box')) { // evit a little bug at tooltip-box
-      this.createToolTipBox(currentTarget);
-      currentTarget.addEventListener('mouseleave', this.removeTooltipBox.bind(this));
-      currentTarget.addEventListener('mousemove', this.mouseMove.bind(this));
-    }
+  isMouseOver({ currentTarget }) {
+    const hasTooltip = document.querySelector('.tooltip-box');
+    hasTooltip != null ? null : this.createToolTipBox(currentTarget);
+    // prevent a little bug in the tooltip-box
+    currentTarget.addEventListener('mouseleave', this.removeTooltipBox.bind(this));
+    currentTarget.addEventListener('mousemove', this.mouseMove.bind(this));
   }
 
   addEvent() {

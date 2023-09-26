@@ -10,9 +10,9 @@
     }
 }   
 
-[data-dropMenu]:hover .dropdown-menu, 
-[data-dropMenu].ativo .dropdown-menu {
-    display: block !important; 
+nav [data-dropMenu]:hover .dropdown-menu, 
+nav [data-dropMenu].ativo .dropdown-menu {
+    display: block;
 }
 
 .dropdown-menu{
@@ -22,7 +22,6 @@
     position: absolute;
     background-color: #e54;
     border: solid 3px black;
-    box-shadow: 0 0 0 3px #e54;
 }
 
 .dropdown-menu::before{
@@ -42,5 +41,10 @@
     color: #f5f5f5;
 }
 
+@media (max-width: 700px) {
+    nav [data-dropMenu] .dropdown-menu{
+        display: block
+    }
+}
 
 

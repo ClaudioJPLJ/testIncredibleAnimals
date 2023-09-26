@@ -11,6 +11,7 @@ import MenuMobile from './menu-mobile.js';
 import OpeningHours from './funcionamento.js';
 import FetchAnimals from './fetchAnimal.js';
 import receiveBitCoinValue from './fetchBitcoinPrice.js';
+import Slide from './slide-configs.js';
 
 const requestSmooth = new SmoothScroll('a[href^="#"]', { behavior: 'smooth', block: 'start' });
 requestSmooth.init();
@@ -35,11 +36,14 @@ receiveBitCoinValue('[data-bitCoinDonation]', 'https://blockchain.info/ticker');
 const requestScrollAnim = new ScrollAnim('[data-scroll="scrollAnim"]');
 requestScrollAnim.init();
 
-const requestdropDown = new DropdownMenu('[data-dropMenu]');
+const requestdropDown = new DropdownMenu('[data-dropMenu]', '[data-hiddenMenu]');
 requestdropDown.init();
 
-const requestMenuMobile = new MenuMobile('[data-menuMobile]', '[data-menumobile] + ul');
+const requestMenuMobile = new MenuMobile('[data-menuMobile]', '[data-menumobile] + ul', '[data-menu-mobile-container]');
 requestMenuMobile.init();
 
 const requestOpeningHours = new OpeningHours('[data-opTime]');
 requestOpeningHours.init();
+
+const slide = new Slide('#photosContainer', '#photoPicker');
+slide.init();

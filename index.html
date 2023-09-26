@@ -12,8 +12,8 @@
   <div id="grid-container">
     <nav>
       <button data-menuMobile aria-expanded="false">Menu</button>
-      <ul>
-        <li data-dropMenu><a href="#animals">Animais</a></li>
+      <ul data-menu-mobile-container>
+        <li><a href="#animals">Animais</a></li>
         <li data-dropMenu>
           <span><a href="sobre.html">Sobre</a></span>
           <ul class="dropdown-menu" data-hiddenMenu>
@@ -26,29 +26,29 @@
         <li><a href="#faq">Faq</a></li>
         <li>
           <a href="#contact">Contato</a>
-        <li><a data-openModal href="login.html" target="_blank">Login →</a></li>
+        <li><a data-openModal href="login.html" target="_blank">Login <span id="arrow-black"></span></a></li>
       </ul>
     </nav>
     <section class="grid-section" id="animals">
       <h1>Animais Fantásticos</h1>
       <ul data-imagesAnim>
         <li>
-          <img src="img/imagem1.jpg">
+          <img src="images/imagem1.jpg">
         </li>
         <li>
-          <img src="img/imagem2.jpg">
+          <img src="images/imagem2.jpg">
         </li>
         <li>
-          <img src="img/imagem3.jpg">
+          <img src="images/imagem3.jpg">
         </li>
         <li>
-          <img src="img/imagem4.jpg">
+          <img src="images/imagem4.jpg">
         </li>
         <li>
-          <img src="img/imagem5.jpg">
+          <img src="images/imagem5.jpg">
         </li>
         <li>
-          <img src="img/imagem6.jpg">
+          <img src="images/imagem6.jpg">
         </li>
       </ul>
       <div id="animals-description" data-descriptionAnim>
@@ -113,13 +113,13 @@
     <section class="grid-section" id="faq">
       <h2>FAQ</h2>
       <dl data-scroll="scrollAnim" class="js-scroll">
-        <dt>Qual a idade dos animais?</dt>
-        <dd>As raposas são animais mamíferos e onívoros pertencentes à família Canidae. São vulpídeos de porte médio, caracterizados por um focinho comprido e uma cauda longa e peluda.</dd>
-        <dt>Eles são fantásticos?</dt>
+        <dt class="opened">Qual a idade dos animais? <span id="red-arrow"></span></dt>
+        <dd class="opened">As raposas são animais mamíferos e onívoros pertencentes à família Canidae. São vulpídeos de porte médio, caracterizados por um focinho comprido e uma cauda longa e peluda.</dd>
+        <dt>Eles são fantásticos? <span id="red-arrow"></span></dt>
         <dd>Também apresentam como particularidade suas pupilas ovais, semelhantes às pupilas verticais dos felídeos.</dd>
-        <dt>Qual a diferença?</dt>
+        <dt>Qual a diferença? <span id="red-arrow"></span></dt>
         <dd>As raposas são animais mamíferos e onívoros pertencentes à família Canidae. São vulpídeos de porte médio, caracterizados por um focinho comprido e uma cauda longa e peluda.</dd>
-        <dt>Como proteger?</dt>
+        <dt>Como proteger? <span id="red-arrow"></span></dt>
         <dd>Também apresentam como particularidade suas pupilas ovais, semelhantes às pupilas verticais dos felídeos.</dd>
       </dl>
     </section>
@@ -154,11 +154,30 @@
       </div>
     </section>
 
+    <div id="slide-container">
+      <ul id="photoPicker">
+        <li><img src="images/slide-images/foto1-thumb.jpg" alt="animal pictures"></li>
+        <li><img src="images/slide-images/foto2-thumb.jpg" alt="animal pictures"></li>
+        <li><img src="images/slide-images/foto3-thumb.jpg" alt="animal pictures"></li>
+        <li><img src="images/slide-images/foto4-thumb.jpg" alt="animal pictures"></li>
+        <li><img src="images/slide-images/foto5-thumb.jpg" alt="animal pictures"></li>
+        <li><img src="images/slide-images/foto6-thumb.jpg" alt="animal pictures"></li>
+      </ul>
+  
+        <ul id="photosContainer">
+          <li><img src="images/slide-images/foto1.jpg" alt="animal pictures" draggable="false"></li>
+          <li><img src="images/slide-images/foto2.jpg" alt="animal pictures" draggable="false"></li>
+          <li><img src="images/slide-images/foto3.jpg" alt="animal pictures" draggable="false"></li>
+          <li><img src="images/slide-images/foto4.jpg" alt="animal pictures" draggable="false"></li>
+          <li><img src="images/slide-images/foto5.jpg" alt="animal pictures" draggable="false"></li>
+          <li><img src="images/slide-images/foto6.jpg" alt="animal pictures" draggable="false"></li>
+        </ul>
+    </div>
     
     <section class="grid-section" id="contact">
       <h2>Contato</h2>
       <div id="map" data-scroll="scrollAnim" class="js-scroll" data-toolTip aria-label="Nós estamos no endereço .... Abrimos às 08:00, fechamos às 18:00">
-        <img src="img/mapa.png">
+        <img src="images/mapa.png">
       </div>
       <ul id="dados" data-scroll="scrollAnim" class="js-scroll">
         <li>email@email.com</li>
@@ -177,7 +196,7 @@
   <section data-modalContainer class="modal-container">
     <div id="modal">
       <form action="">
-        <button data-closeModal id="close-modal">X</button>
+        <button data-closeModal id="close-modal"></button>
         <label for="email">E-mail</label>
         <input type="email" id="email">
         <label for="password">Senha</label>
@@ -188,6 +207,6 @@
   </section>
 
   <script src="./main.js"></script> 
-  
+</body>
 </body>
 </html> 

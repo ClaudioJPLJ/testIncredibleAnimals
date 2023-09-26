@@ -1,0 +1,65 @@
+#slide-container {
+  align-items: center;
+  gap: 2.5rem;
+  max-width: 1500px;
+  margin: 0 50px 50px;
+  display: flex;
+  grid-column: 2 / 4;
+  flex-direction: column;
+}
+
+#photoPicker {
+  display: grid;
+  grid-template-columns: repeat(6, minmax(55px, 80px));
+  margin-top: 3rem;
+  gap: .7rem;
+}
+
+#photoPicker img {
+  cursor: pointer;
+  width: 100%;
+  border-radius: 50%;
+  opacity: 80%;
+  transform: scale(.85);
+  transition: .3s;
+}
+
+#photosContainer {
+  display: flex;
+  overflow-x: hidden;
+  gap: 3.5em;
+  align-self: normal;
+}
+
+#photosContainer.grab {
+  cursor: grab;
+}
+
+#photosContainer img{
+  width: 60vw;
+  max-width: 580px;
+  border-radius: 7px;
+  filter: blur(1px);
+  opacity: 80%;
+  align-self: center;
+  user-select: none;
+  transform: scale(.85);
+  transition: .3s;
+}
+
+#photosContainer li{
+  display: flex;
+}
+
+#photosContainer li.visible img, #photoPicker li.visible img{
+  transform: scale(1);
+  filter: blur(0);
+  opacity: 100;
+}
+
+@media (max-width: 600px) {
+  #photoPicker {
+    grid-template-columns: repeat(3, minmax(60px, 80px));
+  }
+}
+
